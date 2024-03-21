@@ -1,0 +1,7 @@
+// commons ///////////////////////////////
+//英語の文字列がはみ出さないようにするCSSをセット
+body {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+// commons end ///////////////////////////

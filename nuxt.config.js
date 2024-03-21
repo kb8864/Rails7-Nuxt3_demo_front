@@ -20,7 +20,9 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
+  // 読み込みたいCSSファイを指定
   css: [
+    '~/assets/sass/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -43,7 +45,10 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+
+    // https://www.npmjs.com/package/@nuxtjs/i18n
+    'nuxt-i18n' , 
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -53,6 +58,8 @@ export default {
   },
 
   vuetify: {
+    treeShake: true,//←これはカスタムCSSを有効にするキー
+    customVariables: ['~/assets/sass/variables.scss'],//カスタムCSSファイルのパス
     theme: {
       themes: {
         light: {
@@ -63,6 +70,22 @@ export default {
           error: 'FB8678',
           background: 'f6f6f4'
         }
+      }
+    }
+  },
+
+  i18n: {
+    locales: ['ja', 'en'],
+    defaultLocale: 'ja',
+    // Doc: https://kazupon.github.io/vue-i18n/api/#properties
+    vueI18n: {
+      fallbackLocale: 'ja',
+      //silentTranslationWarnがtrueの場合、i18nの警告は表示されない（デフォルトではfalse）
+      // silentTranslationWarn: true,
+      silentFallbackWarn: true,
+      messages: {
+        ja: require('./locales/ja.json'),
+        en: require('./locales/en.json')
       }
     }
   },
